@@ -2,8 +2,7 @@ package com.example.springproject.service;
 
 import com.example.springproject.exception.ValidationRunTimeException;
 import com.example.springproject.model.Users;
-import org.apache.catalina.User;
-import org.springframework.stereotype.Service;
+import org.hibernate.service.Service;
 
 import java.util.List;
 import java.util.Optional;

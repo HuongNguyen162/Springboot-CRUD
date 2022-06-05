@@ -6,20 +6,20 @@ import com.example.springproject.exception.NotFoundException;
 import com.example.springproject.exception.ValidationRunTimeException;
 import com.example.springproject.model.Users;
 import com.example.springproject.repository.UsersRepository;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
+import javax.xml.bind.ValidationException;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
 @Service
-public abstract class UsersServiceImpl implements UsersService {
-    private UsersRepository usersRepository;
-    private PasswordEncoder passwordEncoder;
-
-    //private final UsersRepository usersRepository;
-    //private final PasswordEncoder passwordEncoder;
+@AllArgsConstructor
+public class UsersServiceImpl implements UsersService {
+    private final UsersRepository usersRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public List<Users> getUsers() {
@@ -36,12 +36,12 @@ public abstract class UsersServiceImpl implements UsersService {
     @Override
     public Users create(Users users) {
         //Check id exist
-        if(this.findById(users.getId()).isPresent()){
-            throw new DublicateRecordException("Id already exist");
-        }
-        if (this.findByEmail(users.getEmail()).isPresent()){
-            throw new DublicateRecordException("Email already exist");
-        }
+//        if(this.findById(users.getId()).isPresent()){
+//            throw new DublicateRecordException("Id already exist");
+//        }
+//        if (this.findByEmail(users.getEmail()).isPresent()){
+//            throw new DublicateRecordException("Email already exist");
+//        }
         this.save(users);
 
         return users;

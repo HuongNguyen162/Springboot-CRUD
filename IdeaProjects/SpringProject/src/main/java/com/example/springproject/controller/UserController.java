@@ -9,10 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping
-
+@RequestMapping("/users")
 public class UserController {
-
     @Autowired
     private UsersService userService;
 
@@ -26,7 +24,7 @@ public class UserController {
         return this.userService.findById(Integer.parseInt(id)).orElse(null);
     }
 
-    @PostMapping("")
+    @PostMapping(value = "", consumes = "application/json", produces = "application/json")
     public Users addUser(@RequestBody Users users) {
         return this.userService.create(users);
     }
@@ -40,5 +38,4 @@ public class UserController {
     public void deleteUser(@PathVariable String id) {
         this.userService.delete(id);
     }
-
 }
